@@ -12,16 +12,6 @@
             background-color: black;
         }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
         h1 {
             color: white;
             font-weight: bold;
@@ -29,22 +19,11 @@
             font-family: sans-serif;
             overflow: hidden;
             white-space: nowrap;
-            width: 50%;
+            width: 100%;
             /* Adjust width as needed */
             margin: 0 auto;
             /* Center the heading horizontally */
         }
-
-        .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            border-right: 0.15em solid rgba(255, 255, 255, 0);
-            /* Adjust thickness and color as needed */
-            white-space: nowrap;
-            animation: typing 4s steps(20, end) infinite;
-            /* Adjust duration and steps as needed */
-        }
-
         iframe {
             width: 100%;
             height: calc(100vh - 120px);
@@ -64,9 +43,9 @@
 </head>
 
 <body>
-    <h1><span class="typewriter">PR NewsWire 24/7 AI Live Stream</span></h1>
+    <h1>PR NewsWire</h1>
     <!-- Add a placeholder for the YouTube embed -->
-    <iframe src="https://www.youtube.com/embed/9wJ-JTY5Rkw?si=JayfNvACH4WQwCKC&amp;controls=0"
+    <iframe src="https://www.youtube.com/embed/cOIRSOp3mB0?si=grU97zxAcR2M0p0X"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen></iframe>
@@ -92,7 +71,7 @@
 
         let intervalId; // Variable to hold the interval ID
         getLatestHeadlines(); // Initial call to fetch headlines
-        intervalId = setInterval(getLatestHeadlines, 100000); // Set interval to fetch headlines every 100 seconds
+        intervalId = setInterval(getLatestHeadlines, 600000); // Set interval to fetch headlines every 100 seconds
     </script>
 </body>
 
