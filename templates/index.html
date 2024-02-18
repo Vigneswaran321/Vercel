@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-family: sans-serif;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 50%; /* Adjust width as needed */
+            margin: 0 auto; /* Center the heading horizontally */
+        }
+
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 0.15em solid rgba(255, 255, 255, 0); /* Adjust thickness and color as needed */
+            white-space: nowrap;
+            animation: typing 4s steps(20, end) infinite; /* Adjust duration and steps as needed */
+        }
+        
+        iframe {
+            width: 100%;
+            height: calc(100vh - 120px); /* Adjust height as needed, considering the header heights */
+        }
+        
+        .breaking-news {
+            color: rgb(252, 252, 252);
+            background-color: rgb(233, 45, 45);
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: sans-serif;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span class="typewriter">PR News 24/7 Live Stream</span></h1>
+    <!-- Add a placeholder for the YouTube embed -->
+    <iframe src="https://www.youtube.com/embed/9wJ-JTY5Rkw?si=JayfNvACH4WQwCKC&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="breaking-news" id="breaking-news"></div>
+
+    <script>
+        function getLatestHeadlines() {
+            fetch('/get_latest_headlines')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Received headlines:', data.headlines);
+                    const breakingNewsElement = document.getElementById('breaking-news');
+                    if (data.headlines.length > 0) {
+                        console.log('Updating Breaking News section with:', data.headlines.join(' &emsp; '));
+                        breakingNewsElement.innerHTML = `<marquee behavior="scroll" direction="left">${data.headlines.join(' &emsp; ')}</marquee>`;
+                    } else {
+                        console.log('No headlines received, clearing Breaking News section');
+                        breakingNewsElement.innerHTML = ''; // Clear the breaking news if no headlines are available
+                    }
+                })
+                .catch(error => console.error('Error fetching headlines:', error));
+        }
+
+        let intervalId; // Variable to hold the interval ID
+        getLatestHeadlines(); // Initial call to fetch headlines
+        intervalId = setInterval(getLatestHeadlines, 100000); // Set interval to fetch headlines every 100 seconds
+    </script>
+</body>
+
+</html>
