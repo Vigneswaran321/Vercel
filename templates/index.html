@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>AI PR NewsWire</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: black;
         }
-        
+
         @keyframes typing {
             from {
                 width: 0;
             }
+
             to {
                 width: 100%;
             }
@@ -28,23 +29,28 @@
             font-family: sans-serif;
             overflow: hidden;
             white-space: nowrap;
-            width: 50%; /* Adjust width as needed */
-            margin: 0 auto; /* Center the heading horizontally */
+            width: 50%;
+            /* Adjust width as needed */
+            margin: 0 auto;
+            /* Center the heading horizontally */
         }
 
         .typewriter {
             display: inline-block;
             overflow: hidden;
-            border-right: 0.15em solid rgba(255, 255, 255, 0); /* Adjust thickness and color as needed */
+            border-right: 0.15em solid rgba(255, 255, 255, 0);
+            /* Adjust thickness and color as needed */
             white-space: nowrap;
-            animation: typing 4s steps(20, end) infinite; /* Adjust duration and steps as needed */
+            animation: typing 4s steps(20, end) infinite;
+            /* Adjust duration and steps as needed */
         }
-        
+
         iframe {
             width: 100%;
-            height: calc(100vh - 120px); /* Adjust height as needed, considering the header heights */
+            height: calc(100vh - 120px);
+            /* Adjust height as needed, considering the header heights */
         }
-        
+
         .breaking-news {
             color: rgb(252, 252, 252);
             background-color: rgb(233, 45, 45);
@@ -58,9 +64,12 @@
 </head>
 
 <body>
-    <h1><span class="typewriter">PR News 24/7 Live Stream</span></h1>
+    <h1><span class="typewriter">PR NewsWire 24/7 AI Live Stream</span></h1>
     <!-- Add a placeholder for the YouTube embed -->
-    <iframe src="https://www.youtube.com/embed/9wJ-JTY5Rkw?si=JayfNvACH4WQwCKC&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/9wJ-JTY5Rkw?si=JayfNvACH4WQwCKC&amp;controls=0"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
     <div class="breaking-news" id="breaking-news"></div>
 
     <script>
