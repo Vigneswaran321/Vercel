@@ -2,77 +2,457 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI PR NewsWire</title>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static\styles.css" crossorigin="" data-precedence="next" />
+    <title>NewGenius</title>
+    <meta name="description" content="AI News 24/7" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16" />
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
+        /* CSS */
+        .glowing-card {
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 89, 255, 0.5);
+            /* Blue glowing effect */
+            transition: box-shadow 0.3s ease-in-out;
+            /* Add transition effect for glowing */
         }
 
-        h1 {
+        .glowing-card:hover {
+            box-shadow: 0 0 40px rgba(0, 38, 255, 0.8);
+            /* Increase glow on hover */
+        }
+
+        /* Red glowing effect */
+        .glowing-card-1 {
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .glowing-card-1:hover {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Green glowing effect */
+        .glowing-card-2 {
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(160, 131, 1, 0.247);
+        }
+
+        .glowing-card-2:hover {
+            box-shadow: 0 0 40px rgb(255, 166, 0);
+        }
+
+        .button-80-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left,
+                    hsl(210deg 100% 16%) 0%,
+                    /* Dark blue */
+                    hsl(210deg 100% 32%) 8%,
+                    hsl(210deg 100% 32%) 92%,
+                    hsl(210deg 100% 16%) 100%);
+        }
+
+        .button-80-front {
+            display: block;
+            position: relative;
+            padding: 12px 27px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             color: white;
-            font-weight: bold;
-            text-align: center;
-            font-family: sans-serif;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            /* Adjust width as needed */
-            margin: 0 auto;
-            /* Center the heading horizontally */
-        }
-        iframe {
-            width: 100%;
-            height: calc(100vh - 120px);
-            /* Adjust height as needed, considering the header heights */
+            background: hsl(215deg 100% 47%);
+            /* Blue */
+            will-change: transform;
+            transform: translateY(-4px);
+            transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
         }
 
-        .breaking-news {
-            color: rgb(252, 252, 252);
-            background-color: rgb(233, 45, 45);
-            text-align: center;
-            font-weight: bold;
-            font-size: 24px;
-            font-family: sans-serif;
-            padding: 20px 0;
+        .button-82-pushable:hover .button-80-front {
+            transform: translateY(-6px);
+            transition:
+                transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-82-pushable:active .button-80-front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+
+        .button-82-pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            outline-offset: 4px;
+            transition: filter 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-82-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: hsl(0deg 0% 0% / 0.25);
+            will-change: transform;
+            transform: translateY(2px);
+            transition:
+                transform 600ms cubic-bezier(.3, .7, .4, 1);
+        }
+
+        .button-82-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left,
+                    hsl(340deg 100% 16%) 0%,
+                    hsl(340deg 100% 32%) 8%,
+                    hsl(340deg 100% 32%) 92%,
+                    hsl(340deg 100% 16%) 100%);
+        }
+
+        .button-82-front {
+            display: block;
+            position: relative;
+            padding: 12px 27px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: white;
+            background: hsl(345deg 100% 47%);
+            will-change: transform;
+            transform: translateY(-4px);
+            transition:
+                transform 600ms cubic-bezier(.3, .7, .4, 1);
+        }
+
+        .button-81-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left,
+                    hsl(135deg 80% 16%) 0%,
+                    hsl(135deg 80% 32%) 8%,
+                    hsl(135deg 80% 32%) 92%,
+                    hsl(135deg 80% 16%) 100%);
+        }
+
+        .button-81-front {
+            display: block;
+            position: relative;
+            padding: 12px 27px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: white;
+            background: hsl(140deg 100% 35%);
+            will-change: transform;
+            transform: translateY(-4px);
+            transition:
+                transform 600ms cubic-bezier(.3, .7, .4, 1);
+        }
+
+        .button-82-pushable:hover .button-81-front {
+            transform: translateY(-6px);
+            transition:
+                transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-82-pushable:active .button-81-front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+
+        @media (min-width: 768px) {
+            .button-82-front {
+                font-size: 1.25rem;
+                padding: 12px 42px;
+            }
+        }
+
+        .button-82-pushable:hover {
+            filter: brightness(110%);
+            -webkit-filter: brightness(110%);
+        }
+
+        .button-82-pushable:hover .button-82-front {
+            transform: translateY(-6px);
+            transition:
+                transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-82-pushable:active .button-82-front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+
+        .button-82-pushable:hover .button-82-shadow {
+            transform: translateY(4px);
+            transition:
+                transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+        }
+
+        .button-82-pushable:active .button-82-shadow {
+            transform: translateY(1px);
+            transition: transform 34ms;
+        }
+
+        .button-82-pushable:focus:not(:focus-visible) {
+            outline: none;
         }
     </style>
 </head>
 
-<body>
-    <h1>PR NewsWire</h1>
-    <!-- Add a placeholder for the YouTube embed -->
-    <iframe src="https://www.youtube.com/embed/cOIRSOp3mB0?si=grU97zxAcR2M0p0X"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-    <div class="breaking-news" id="breaking-news"></div>
+<body class="__className_aaf875">
+    <main class="flex min-h-screen h-fit flex-col items-center justify-center relative">
+        <div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center"></div>
+        <div
+            class="w-full h-16 backdrop-filter backdrop-blur-xl bg-opacity-20 border-b flex items-center justify-center">
+            <div class="max-w-7xl w-full flex items-center justify-between p-4">
+                <h3 class="font-bold">NEWGENIUS</h3>
+                <ul class="flex gap-8">
+                    <li><a class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base" href="#home">Home</a>
+                    </li>
+                    <li><a class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base" href="#about">About</a>
+                    </li>
+                    <li class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base"><a href="/news">News</a>
+                    </li>
+                    <li><a class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base"
+                            href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+        </div>
+        <header id="home"
+            class="flex flex-col-reverse md:flex-row w-full h-screen max-w-7xl items-center justify-center p-8 relative overflow-x-hidden">
+            <div class="w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-4xl font-black md:text-8xl">NewGenius</h1>
+                    <h2 class="text-md md:text-2xl">📡 Start Streaming AI News Today! 📰</h2>
+                </div>
+                <p class="max-w-md text-sm md:text-base text-zinc-500">Say goodbye to overpriced headlines💸and hello to
+                    wallet-friendly updates!🚀Let&#x27;s make headlines together!🌟</p>
+                <div class="w-full flex items-center justify-center md:justify-start gap-4"><!-- HTML !-->
+                    <button class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-81-edge"></span>
+                        <span class="button-81-front text">
+                            <a href="#pricing">Try Now</a>
+                        </span>
+                    </button>
+                    <button class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <a href="mailto:catalyticbaymax@icloud.com" class="button-82-front text"
+                            style="text-decoration: none;">
+                            Contact Us
+                        </a>
+                    </button>
 
-    <script>
-        function getLatestHeadlines() {
-            fetch('/get_latest_headlines')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Received headlines:', data.headlines);
-                    const breakingNewsElement = document.getElementById('breaking-news');
-                    if (data.headlines.length > 0) {
-                        console.log('Updating Breaking News section with:', data.headlines.join(' &emsp; '));
-                        breakingNewsElement.innerHTML = `<marquee behavior="scroll" direction="left">${data.headlines.join(' &emsp; ')}</marquee>`;
-                    } else {
-                        console.log('No headlines received, clearing Breaking News section');
-                        breakingNewsElement.innerHTML = ''; // Clear the breaking news if no headlines are available
-                    }
-                })
-                .catch(error => console.error('Error fetching headlines:', error));
-        }
+                </div>
+            </div>
+            <div class="w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative -z-10">
+                <div style="width:100%;height:100%"
+                    class="w-full flex scale-[.25] sm:scale-[.35] lg:scale-[.5] items-center justify-center md:justify-start">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/zLl9yMhWz2zud2YA/scene.splinecode"></spline-viewer>
+                </div>
+            </div>
+        </header>
+        <section id="video" class="h-full-screen w-full flex flex-col items-center justify-center gap-8 p-8">
+            <h3 class="text-4xl md:text-5xl font-bold">24/7 LiveStream</h3>
+            <div class="relative w-full h-0 "
+                style="padding-bottom:56.25%;margin-top:10px;margin-bottom:10px;margin-left:4rem;margin-right:4rem">
+                <iframe src="https://www.youtube.com/embed/PBKGLmpo59k?si=cM-A-fz3xrOr7w6m" title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen="" class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    style="border-radius:25px"></iframe>
+            </div>
+        </section>
+        <section id="about" class="h-fit min-h-screen w-full flex relative items-center justify-center p-8">
+            <div class="absolute -z-10 h-full w-full overflow-hidden">
+                <img alt="Background Whirl" loading="lazy" decoding="async" data-nimg="fill"
+                    class="absolute object-cover w-full overflow-visible sm:rotate-90"
+                    style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+                    src="static\whirl.svg" />
+            </div>
+            <div class="w-full h-full flex items-center justify-center flex-col gap-8 max-w-7xl">
+                <h3 class="text-4xl md:text-5xl font-bold">Round-the-Clock⏰ NewGenius Rocks🌟</h3>
+                <div
+                    class="w-full grid grid-cols-1 grid-rows-3 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-4 justify-between relative">
+                    <div class="glowing-card-2 w-full h-80 rounded flex flex-col justify-around items-center p-8 bg-gray-900 rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20"
+                        style="margin-right: 15px;">
+                        <div class="p-4 rounded-full" style="background-color: #26cf26;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-clock">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
 
-        let intervalId; // Variable to hold the interval ID
-        getLatestHeadlines(); // Initial call to fetch headlines
-        intervalId = setInterval(getLatestHeadlines, 600000); // Set interval to fetch headlines every 100 seconds
-    </script>
+                        <div>
+                            <h3 class="text-lg font-bold sm:text-xl">24/7 Content Generation</h3>
+                        </div>
+                        <div>
+                            <p class="text-sm sm:text-base text-center md:text-left">NewGenius keeps the content flowing
+                                round the clock with AI-powered algorithms, ensuring you&#x27;re always ahead of the
+                                curve.</p>
+                        </div>
+                    </div>
+                    <div class="glowing-card-2 w-full h-80 rounded flex flex-col justify-around items-center p-8 bg-gray-900 rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20"
+                        style="margin-right: 15px;">
+                        <div class="p-4 rounded-full" style="background-color: #2629cf;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-pen-square">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                                </path>
+                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold sm:text-xl">Maximize Productivity</h3>
+                        </div>
+                        <div>
+                            <p class="text-sm sm:text-base text-center md:text-left">With NewGenius, spend less time
+                                curating content and more time driving revenue. Let AI handle the heavy lifting while
+                                you focus on growth.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="glowing-card-2 w-full h-80 rounded flex flex-col justify-around items-center p-8 bg-gray-900 rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20">
+                        <div class="p-4 rounded-full" style="background-color: #cf2626;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-up-narrow-wide">
+                                <path d="m3 8 4-4 4 4"></path>
+                                <path d="M7 4v16"></path>
+                                <path d="M11 12h4"></path>
+                                <path d="M11 16h7"></path>
+                                <path d="M11 20h10"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold sm:text-xl">Stay Ahead Always</h3>
+                        </div>
+                        <div>
+                            <p class="text-sm sm:text-base text-center md:text-left">Never miss a beat with NewGenius.
+                                Our AI tools analyze trends and deliver insights 24/7, empowering you to make informed
+                                decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="h-fit min-h-screen w-full flex flex-col items-center justify-center gap-8 p-8">
+            <h4 class="text-4xl md:text-5xl font-bold">Pricing</h4>
+            <div
+                class="grid grid-cols-1 grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 items-center h-fit w-full max-w-3xl gap-8">
+                <div
+                    class="glowing-card-1 h-fit w-full rounded flex flex-col p-8 gap-8 bg-gray-900 rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20">
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <h6 class="text-2xl">NewGenius Pro</h6>
+                            <p class="text-sm text-zinc-500">Unlock AI-powered news generation for revenue growth!</p>
+                        </div>
+                        <p class="text-4xl font-bold">$<!-- -->350<!-- --> <span
+                                class="text-sm font-normal text-zinc-500">/ Month</span></p>
+                    </div><button class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <span class="button-82-front text">
+                            <a href="mailto:catalyticbaymax@icloud.com">
+                                Take Red Pill
+                            </a>
+                        </span>
+                    </button>
+                    <div class="flex flex-col w-full gap-4">
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>Unlimited Minutes of Generation</p>
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>Automated Video Creation</p>
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>Lower Quality Generation</p>
+                    </div>
+                </div>
+                <div
+                    class="glowing-card h-fit w-full rounded flex flex-col p-8 gap-8 bg-gray-900 rounded bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20">
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <h6 class="text-2xl">NewGenius Enterprise</h6>
+                            <p class="text-sm text-zinc-500">Accelerate your revenue with comprehensive AI news
+                                generation!</p>
+                        </div>
+                        <p class="text-4xl font-bold">$<!-- -->700<!-- --> <span
+                                class="text-sm font-normal text-zinc-500">/ Month</span></p>
+                    </div> <button class="button-82-pushable" role="button">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-80-edge"></span>
+                        <span class="button-80-front text">
+                            <a href="mailto:catalyticbaymax@icloud.com">
+                                Take Blue Pill
+                            </a>
+                        </span>
+                    </button>
+                    <div class="flex flex-col w-full gap-4">
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>Everything In Pro Tier, and:</p>
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>High Quality Generation</p>
+                        <p class="text-sm text-zinc-500 flex items-center gap-2"><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-check-check">
+                                    <path d="M18 6 7 17l-5-5"></path>
+                                    <path d="m22 10-7.5 7.5L13 16"></path>
+                                </svg></span>Videos with AI-Powered Templates</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
