@@ -107,7 +107,7 @@
                 <h3 class="font-bold">NEWGENIUS</h3>
                 <ul class="flex gap-8">
                     <li><a class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base" href="/">Home</a></li>
-                    <li class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base"><a href="/news">News</a>
+                    <li><a class="hover:text-fuchsia-500 transition-colors text-xs sm:text-base" href="/news">News</a>
                     </li>
                 </ul>
             </div>
@@ -170,7 +170,7 @@
                     fetchAndDisplayHeadlines(newsType);
                 });
             });
-        
+
             function fetchAndDisplayHeadlines(type) {
                 fetch(`/get_latest_headlines?type=${type}`)
                     .then(response => response.json())
@@ -193,11 +193,11 @@
                                 sliceStart = 0;
                                 sliceEnd = 3;
                         }
-        
+
                         const headlines = data.headlines.slice(sliceStart, sliceEnd); // Limit headlines based on type
                         const newsContent = document.getElementById('news-content');
                         newsContent.innerHTML = ''; // Clear existing content
-        
+
                         // Manually implementing time for each headline with 5 minutes difference and in 12-hour format
                         const currentTime = new Date();
                         for (let i = 0; i < headlines.length; i++) {
@@ -231,7 +231,7 @@
                     })
                     .catch(error => console.error('Error fetching headlines:', error));
             }
-        
+
             function formatTime(time) {
                 let hours = time.getHours();
                 const minutes = time.getMinutes().toString().padStart(2, '0');
@@ -240,11 +240,11 @@
                 hours = hours ? hours : 12;
                 return `${hours}:${minutes} ${ampm}`;
             }
-        
+
             // Initialize with breaking news
             fetchAndDisplayHeadlines('breaking');
         </script>
-        
+
 
 
 
