@@ -9,93 +9,128 @@
     <meta name="description" content="AI News 24/7" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
     <style>
-        .tab-btn {
-            border-radius: 15px;
-            /* Rounded corners */
-            border: none;
-            /* Remove border */
-            padding: 10px 20px;
-            /* Padding for buttons */
-            cursor: pointer;
-            /* Cursor pointer */
-            margin: 0 5px;
-            /* Margin for spacing */
-        }
 
-        .tab-btn.active {
-            background-color: #ffffff;
-            /* Black background for active */
-            color: #000000;
-            /* White text for active */
-        }
 
-        .tab-btn:not(.active) {
-            background-color: #000000;
-            /* White background for inactive */
-            color: #ffffff;
-            /* Black text for inactive */
-        }
+    .tab-btn:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    #D6D6E7 0 -3px 0 inset;
+    }
 
-        #news-content {
-            margin-top: 1.5rem;
-            /* Add margin to create space between tabs and news cards */
-        }
+    .tab-btn:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+    }
 
-        .image-container {
-            width: 100%;
-            height: 100px;
-            /* Set the height of the image container as needed */
-            background-color: #ccc;
-            /* Placeholder background color */
-            margin-bottom: 0.5rem;
-            /* Add margin to separate the image container from the headline text */
-            border-radius: 15px;
-            /* Border radius for the image container */
-            overflow: hidden;
-            /* Ensure the image doesn't overflow */
-        }
+    .tab-btn {
+        align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 15px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    }
+    @media only screen and (min-width: 768px) {
+    .tab-btn {
+        width: 200px; /* Adjust width as needed */
+        font-size: 24px;
+    }
+}
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Ensure the image covers the container */
-        }
+    .tab-btn.active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+    }
 
-        .banner-container {
-            width: 100%;
-            height: 150px;
-            /* Set the height of the banner container */
-            background-color: #f0f0f0;
-            /* Placeholder background color */
-            margin-bottom: 0.5rem;
-            /* Add margin to separate the banner from other content */
-            border-radius: 15px;
-            /* Border radius for the banner container */
-            overflow: hidden;
-            /* Ensure the banner image doesn't overflow */
-        }
+    .tab-btn:not(.active) {
+    background-color: #000000;
+    /* White background for inactive */
+    color: #ffffff;
+    /* Black text for inactive */
+    }
 
-        .banner-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* Ensure the image covers the container */
-        }
+    #news-content {
+    margin-top: 1.5rem;
+    /* Add margin to create space between tabs and news cards */
+    }
 
-        /* Add this CSS to your stylesheet */
-        .news-card {
-            padding: 1.5rem;
-            background-color: #042a5b5c;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-            margin-top: 1.5rem;
-        }
+    .image-container {
+    width: 100%;
+    height: 100px;
+    /* Set the height of the image container as needed */
+    background-color: #ccc;
+    /* Placeholder background color */
+    margin-bottom: 0.5rem;
+    /* Add margin to separate the image container from the headline text */
+    border-radius: 15px;
+    /* Border radius for the image container */
+    overflow: hidden;
+    /* Ensure the image doesn't overflow */
+    }
 
-        .news-card:hover {
-            transform: scale(1.05);
-        }
+    .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the container */
+    }
+
+    .banner-container {
+    width: 100%;
+    height: 150px;
+    /* Set the height of the banner container */
+    background-color: #f0f0f0;
+    /* Placeholder background color */
+    margin-bottom: 0.5rem;
+    /* Add margin to separate the banner from other content */
+    border-radius: 15px;
+    /* Border radius for the banner container */
+    overflow: hidden;
+    /* Ensure the banner image doesn't overflow */
+    }
+
+    .banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensure the image covers the container */
+    }
+
+    /* Add this CSS to your stylesheet */
+    .news-card {
+    padding: 1.5rem;
+    background-color: #fffff80d;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 1.5rem;
+    border: 2px dashed rgb(254 255 185)
+    }
+
+    .news-card:hover {
+    transform: scale(1.05);
+    background-color: #ffff190d;
+    }
     </style>
 </head>
 
@@ -159,9 +194,9 @@
         <section id="news" class="h-fit min-h-screen w-full flex relative justify-center p-8">
             <div class="w-full max-w-7xl">
                 <div class="flex justify-center gap-8" id="tabs">
-                    <button class="tab-btn active" data-type="breaking">Breaking News</button>
-                    <button class="tab-btn" data-type="sports">Sports News</button>
-                    <button class="tab-btn" data-type="tech">Technology News</button>
+                    <button class="tab-btn active" data-type="breaking">Latest</button>
+                    <button class="tab-btn" data-type="sports">Sports</button>
+                    <button class="tab-btn" data-type="tech">Technology</button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6" id="news-content">
                     <!-- News cards will be injected here -->
