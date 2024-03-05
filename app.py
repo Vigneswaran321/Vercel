@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import requests
 from bs4 import BeautifulSoup
 import datetime
+from gpt import get_response
 
 app = Flask(__name__, static_folder='static')
 
@@ -22,11 +23,18 @@ def get_latest_headlines():
 def index():
     return render_template('index.html')
 
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
 
 @app.route('/news')
 def news():
     return render_template('news.html')
 
+@app.route("/get", methods=["GET", "POST"])
+def gpt_response():
+    userText = request.args.get('msg')
+    return str(get_response(userText))
 
 @app.route('/get_latest_headlines')
 def send_latest_headlines():
