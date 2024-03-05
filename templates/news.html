@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="static/styles.css" crossorigin="" data-precedence="next" />
     <title>NewGenius</title>
     <meta name="description" content="AI News 24/7" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="32x32" />
     <meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0" />
     <style>
         /* Create a gradient background */
@@ -16,7 +16,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20px;
+            height: 30px;
             /* Adjust the height as needed */
             background: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
             /* Transparent to white gradient */
@@ -79,9 +79,47 @@
 
         @media only screen and (min-width: 768px) {
             .tab-btn {
-                width: 200px;
-                /* Adjust width as needed */
-                font-size: 24px;
+                width: 150px;
+                font-size: 22px;
+            }
+        }
+
+        @media screen and (max-width: 849px) {
+            #news .flex {
+                flex-direction: column;
+            }
+
+            #news .border-l-2 {
+                border-left: none;
+                border-top: 2px solid gray;
+                /* Add a border at the top for separation */
+                padding-top: 16px;
+                /* Add padding for space */
+                padding-left: 0;
+                /* Remove left padding */
+            }
+
+            #tabs {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 16px;
+                align-items: center;
+                /* Adjust margin for space */
+            }
+
+            #tabs .tab-btn {
+                width: 150px;
+                font-size: 20px;
+            }
+
+            #news-content {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+                /* Display news cards in a single column */
+                gap: 16px;
+                /* Adjust gap between news cards */
+                margin-top: 1.5rem;
+                /* Adjust margin for space */
             }
         }
 
@@ -97,10 +135,6 @@
             /* Black text for inactive */
         }
 
-        #news-content {
-            margin-top: 1.5rem;
-            /* Add margin to create space between tabs and news cards */
-        }
 
         .image-container {
             width: 100%;
@@ -157,7 +191,7 @@
 
         .news-card:hover {
             transform: scale(1.05);
-            background-color: #ffffff0d;
+            background-color: #ffffff3f;
         }
     </style>
 </head>
@@ -224,9 +258,10 @@
         </section>
         <section id="news" class="h-fit min-h-screen w-full flex relative justify-center p-8">
             <div class="w-full max-w-7xl">
-                <div class="flex justify-between items-center gap-8">
+                <div class="flex justify-between gap-8">
                     <div class="flex flex-col">
-                        <h2 class="text-lg font-bold mb-2">Headlines</h2>
+                        <h2 class="text-lg font-bold mb-2">Top Headlines</h2>
+                        <br>
                         <ul id="headlines" class="flex flex-col gap-1">
                             <!-- Headlines will be injected here -->
                         </ul>
@@ -267,37 +302,44 @@
                         switch (type) {
                             case 'breaking':
                                 sliceStart = 0;
-                                sliceEnd = 6;
+                                sliceEnd = 9;
                                 break;
                             case 'sports':
-                                sliceStart = 6;
-                                sliceEnd = 12;
+                                sliceStart = 9;
+                                sliceEnd = 16;
                                 break;
                             case 'tech':
-                                sliceStart = 12;
-                                sliceEnd = 18;
+                                sliceStart = 16;
+                                sliceEnd = 23;
                                 break;
                             default:
                                 sliceStart = 0;
                                 sliceEnd = 3;
                         }
 
-                        const headlines = data.headlines.slice(sliceStart, sliceEnd); // Limit headlines based on type
+                        const headlines = data.headlines.slice(sliceStart, sliceEnd);
+                        const hds = data.headlines.slice(0, 8); // Limit headlines based on type
                         const newsContent = document.getElementById('news-content');
                         newsContent.innerHTML = ''; // Clear existing content
 
                         const headlinesElement = document.getElementById('headlines');
                         headlinesElement.innerHTML = ''; // Clear existing headlines
 
-                        headlines.forEach((headline, index) => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = headline;
-                            headlinesElement.appendChild(listItem);
+                        hds.forEach((headline, index) => {
+                            const headlineDiv = document.createElement('div');
+                            headlineDiv.className = 'headline';
+                            // Add the headline text
+                            headlineDiv.innerText = headline;
+                            headlinesElement.appendChild(headlineDiv);
 
                             // Add horizontal line after each headline
-                            if (index < headlines.length - 1) {
+                            if (index < hds.length - 1) {
+                                const be = document.createElement('br');
+                                headlinesElement.appendChild(be);
                                 const hr = document.createElement('hr');
                                 headlinesElement.appendChild(hr);
+                                const br = document.createElement('br');
+                                headlinesElement.appendChild(br);
                             }
                         });
 
@@ -325,25 +367,12 @@
                             }
                             imageContainer.innerHTML = `<img src="${imageUrl}" alt="Image">`;
                             card.appendChild(imageContainer);
-                            const time = new Date(currentTime.getTime() - i * 5 * 60 * 1000);
-                            const formattedTime = formatTime(time);
-                            card.innerHTML += `<p class="text-sm font-semibold">${formattedTime}</p>`;
                             card.innerHTML += `<h3 class="text-lg font-bold">${headlines[i]}</h3>`;
                             newsContent.appendChild(card);
                         }
                     })
                     .catch(error => console.error('Error fetching headlines:', error));
             }
-
-            function formatTime(time) {
-                let hours = time.getHours();
-                const minutes = time.getMinutes().toString().padStart(2, '0');
-                const ampm = hours >= 12 ? 'PM' : 'AM';
-                hours = hours % 12;
-                hours = hours ? hours : 12;
-                return `${hours}:${minutes} ${ampm}`;
-            }
-
             // Initialize with breaking news
             fetchAndDisplayHeadlines('breaking');
         </script>

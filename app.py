@@ -6,8 +6,7 @@ from gpt import get_response
 
 app = Flask(__name__, static_folder='static')
 
-latest_headlines = [{"text": "", "time": None}] * \
-    10  # Initialize with empty headlines
+latest_headlines = [{"text": "", "time": None}]
 
 
 def get_latest_headlines():
@@ -16,7 +15,7 @@ def get_latest_headlines():
     soup = BeautifulSoup(response.text, 'html.parser')
     headlines = soup.find_all('h3')
     # Get the latest 10 headlines
-    return [headline.text.strip() for headline in headlines[:18]]
+    return [headline.text.strip() for headline in headlines[:24]]
 
 
 @app.route('/')
