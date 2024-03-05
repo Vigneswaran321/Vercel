@@ -33,8 +33,8 @@ def get_response(prompt_msg):
             presence_penalty=0,
             stop=None,
         )
-        content = response["choices"][0]["message"]["content"]
+        content = response.choices[0].message.content
         return content
-    except openai.error.RateLimitError as e:
+    except client.ErrorObject as e:
         print(e)
         return ""
