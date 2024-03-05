@@ -4,7 +4,8 @@ import time
 import openai
 from collections import deque
 
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+api_key = os.environ.get("OPENAI_API_KEY")
+client = openai.Client(api_key=api_key)
 
 systemPrompt = "You are a helpful assistant."
 
@@ -22,7 +23,7 @@ def get_response(prompt_msg):
     messages = [{"role": "system", "content": systemPrompt}]
     messages.extend(data)
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=GPT_MODEL,
             messages=messages,
             max_tokens=200,
