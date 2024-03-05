@@ -16,7 +16,7 @@ def get_latest_headlines():
     soup = BeautifulSoup(response.text, 'html.parser')
     headlines = soup.find_all('h3')
     # Get the latest 10 headlines
-    return [headline.text.strip() for headline in headlines[:10]]
+    return [headline.text.strip() for headline in headlines[:18]]
 
 
 @app.route('/')
